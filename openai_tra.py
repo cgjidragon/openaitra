@@ -35,3 +35,12 @@ translated_text = translate_text(input_text)
 
 # 打印翻译结果
 print(translated_text)
+
+
+# Write translated text to file
+with open('output.txt', 'w') as file:
+    file.write(translated_text)
+
+# Print confirmation message
+print('Translation saved to output.txt')
+
