@@ -1,7 +1,7 @@
 import openai
 
 # 设置您的OpenAI API密钥
-openai.api_key = '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'
+openai.api_key = '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'
 
 def translate_text(input_text):
     # 设置您要翻译的源语言和目标语言（从中文到英文）
@@ -16,7 +16,7 @@ def translate_text(input_text):
         temperature=0.7,
         n=1,
         stop=None,
-        log_level='info'
+        #log_level='info'
     )
 
     # 提取翻译结果
