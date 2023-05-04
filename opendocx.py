@@ -2,7 +2,7 @@ import docx
 import openai
 
 # 设置您的OpenAI API密钥
-openai.api_key = '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'
+openai.api_key = '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'
 
 def translate_text(input_text):
     # 设置您要翻译的源语言和目标语言（从中文到英文）
