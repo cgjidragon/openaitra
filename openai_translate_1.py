@@ -3,9 +3,10 @@ import openai
 import os
 import re
 import sys
+import logging
 
 # 设置您的OpenAI API密钥
-openai.api_key = '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'
+openai.api_key = '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'
 
 def get_docx_files(dir):
     # 初始化一个空列表，用来保存所有后缀名为docx的文件路径
@@ -26,6 +27,7 @@ def get_docx_files(dir):
     return docx_files
 
 def translate_docx_file(source_file_name):
+    print(f'Translating file {source_file_name}...')
     target_file_name = re.sub(r'\.docx$', '_en\g<0>', source_file_name)
     source_doc = docx.Document(source_file_name)
     target_doc = docx.Document()
@@ -36,18 +38,21 @@ def translate_docx_file(source_file_name):
     print(f'Translated {source_file_name} to {target_file_name}')
 
 def translate_text(input_text, source_language='zh-CN', target_language='en'):
+    print(f'input_text = "{input_text[:30]}..."')
     # 使用OpenAI进行翻译
     response = openai.Completion.create(
         engine='text-davinci-003',
-        prompt=f"Translate the following {source_language} text to {target_language}:\n\n{input_text}",
+        prompt=f'Translate the following {source_language} text to {target_language}:\n\n{input_text}',
         max_tokens=1000,
         temperature=0.7,
         n=1,
         stop=None,
-        #log_level='info'
+        log_level='info'
     )
     # 提取翻译结果
-    return response.choices[0].text.strip()
+    translation = response.choices[0].text.strip()
+    print(f'translation = "{translation[:30]}..."')
+    return translation
 
 if __name__ == '__main__':
     dir = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
